@@ -9,22 +9,21 @@ function App() {
   useEffect(() => {
     if (!isSpinning) return
 
-    const spinTime = Math.random() * (6000 - 3000 + 1) 
-    console.log(spinTime)
+    const spinTime = Math.floor(Math.random() * 6000) 
 
     const intervalId = setInterval(() => {
-      setDecision(!decision)
+      setDecision(decision => !decision)
     }, 250)
 
     const timeoutId = setTimeout(() => {
       setIsSpinning(false)
       clearInterval(intervalId)
       console.log(`interval stopped after ${spinTime} secs`)
-    }, 2000)
-      
+      console.log(decision)
+    }, spinTime)
     
-    return () => { }
-  }, [isSpinning, decision])
+    return () => {}
+  }, [isSpinning])
 
   function handleSpin() {
     
